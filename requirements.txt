@@ -1,0 +1,8 @@
+streamlit
+google-generativeai
+python-dotenv
+langchain
+pypdf2
+gtts
+pandas
+pytesseract

@@ -1,0 +1,210 @@
+/* ====== App surface ====== */
+:root{
+  --card-bg: rgba(255,255,255,0.65);
+  --card-border: rgba(255,255,255,0.35);
+  --pill-bg: rgba(0,0,0,0.06);
+  --pill-fg: #222;
+}
+[data-testid="stAppViewContainer"]{
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #eaf0ff 0%, transparent 60%),
+    radial-gradient(900px 500px at 100% 10%, #fff1f1 0%, transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, #f7f9fc 40%, #eef2f8 100%);
+}
+
+/* ====== Typography / title ====== */
+.app-title{
+  font-size:2.1rem; font-weight:800; line-height:1.1;
+  background: linear-gradient(90deg, #1f2937, #334155, #0f172a);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  margin-bottom:.25rem;
+}
+.app-subtitle{ color:#475569; font-size:.98rem; margin-top:0; }
+.section-title{ font-weight:700; margin-bottom:.4rem; color:#0f172a; }
+
+/* ====== Cards ====== */
+.card{
+  background: var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:18px; padding:18px 18px;
+  box-shadow: 0 8px 26px rgba(0,0,0,0.06);
+  transition: all .2s ease-in-out;
+}
+.card:hover{
+  background: rgba(255,255,255,0.80);
+  box-shadow: 0 10px 34px rgba(0,0,0,0.12);
+}
+
+/* ====== Pills / badges ====== */
+.pills{display:flex; gap:8px; flex-wrap:wrap; margin:.3rem 0 .2rem 0;}
+.pill{
+  background:var(--pill-bg); color:var(--pill-fg);
+  padding:6px 10px; border-radius:999px; font-size:.78rem;
+  border:1px dashed rgba(0,0,0,0.10);
+  transition: background-color .15s ease, border-color .15s ease;
+}
+.pill:hover{
+  background:#e2e8f0;
+  border-color:#94a3b8;
+  cursor:pointer;
+}
+.badge{
+  display:inline-block; padding:4px 10px; border-radius:999px; font-weight:600; font-size:.72rem;
+  background:#eef2ff; color:#3730a3; border:1px solid #c7d2fe;
+}
+
+/* ====== Buttons ====== */
+/* Buttons: default, hover, focus, active, disabled */
+.stButton > button{
+  width:100% !important;
+  min-height:44px;
+  border-radius:12px;
+  border:1px solid #1f2937;              /* dark slate border */
+  background:#f1f5f9;                     /* light slate */
+  color:#0f172a;                          /* very dark text */
+  transition: background-color .18s ease, color .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+/* HIGH-VISIBILITY HOVER */
+.stButton  > button:hover{
+  background:#0f172a !important;          /* very dark */
+  color:#ffffff !important;               /* white text */
+  border-color:#0b1220 !important;
+  box-shadow:0 6px 16px rgba(15,23,42,0.28);
+}
+
+.stDownloadButton  > button:hover{
+  background:#0f172a !important;          /* very dark */
+  color:#ffffff !important;               /* white text */
+  border-color:#0b1220 !important;
+  box-shadow:0 6px 16px rgba(15,23,42,0.28);
+}
+/* Keyboard focus: visible outline + same high-contrast colors */
+.stButton > button:focus-visible{
+  outline:3px solid #3b82f6;              /* blue focus ring */
+  outline-offset:2px;
+  background:#111827 !important;
+  color:#ffffff !important;
+  border-color:#0b1220 !important;
+}
+
+.stDownloadButton > button:focus-visible{
+  outline:3px solid #3b82f6;              /* blue focus ring */
+  outline-offset:2px;
+  background:#111827 !important;
+  color:#ffffff !important;
+  border-color:#0b1220 !important;
+}
+
+/* Active/pressed */
+.stButton > button:active{
+  background:#111827 !important;          /* slightly lighter than hover */
+  color:#ffffff !important;
+  transform: translateY(0);               /* no jump */
+}
+
+/* Active/pressed */
+.stDownloadButton > button:active{
+  background:#111827 !important;          /* slightly lighter than hover */
+  color:#ffffff !important;
+  transform: translateY(0);               /* no jump */
+}
+
+/* Disabled state remains obvious */
+.stButton > button:disabled,
+.stButton > button[disabled]{
+  background:#e5e7eb !important;
+  color:#9ca3af !important;
+  border-color:#e5e7eb !important;
+  box-shadow:none !important;
+  cursor:not-allowed;
+  opacity:.9;
+}
+
+.stDownloadButton > button:disabled,
+.stDownloadButton > button[disabled]{
+  background:#e5e7eb !important;
+  color:#9ca3af !important;
+  border-color:#e5e7eb !important;
+  box-shadow:none !important;
+  cursor:not-allowed;
+  opacity:.9;
+}
+/* ====== Inputs ====== */
+textarea, .stTextArea textarea{ border-radius:14px !important; }
+
+
+/* Always-readable textareas */
+textarea, .stTextArea textarea{
+  background-color:#ffffff !important;
+  color:#000000 !important;
+}
+
+/* Readonly/disabled state should still be black & visible */
+.stTextArea textarea:disabled{
+  background-color:#f9fafb !important;   /* light gray */
+  color:#000000 !important;
+  opacity:1 !important;                   /* prevent dimming */
+  -webkit-text-fill-color:#000000 !important; /* Safari/WebKit */
+}
+
+
+/* --- Streamlit alerts: force visible background on the inner container --- */
+/* --- Make ALL Streamlit alerts readable --- */
+/* Reset wrapper so only inner panel is styled */
+div.stAlert{
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Inner alert panel (works across Streamlit versions) */
+div.stAlert > div{
+  background-color: #ffffff !important;  /* solid white base */
+  color: #000000 !important;             /* black text */
+  border: 2px solid #e5e7eb !important;  /* neutral border */
+  border-radius: 12px !important;
+  padding: 10px 12px !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
+}
+
+/* Specific variants so errors pop */
+div.stAlert.stError > div{
+  background-color: #f03939 !important;  /* light red */
+  border-color: #ef4444 !important;
+  color: #111827 !important;             /* near-black text */
+}
+div.stAlert.stWarning > div{
+  background-color: #fef9c3 !important;  /* light yellow */
+  border-color: #f59e0b !important;
+  color: #111827 !important;
+}
+div.stAlert.stSuccess > div{
+  background-color: #d1fae5 !important;  /* light green */
+  border-color: #10b981 !important;
+  color: #111827 !important;
+}
+
+/* Make the alert icon visible */
+div.stAlert svg{
+  color: inherit !important;
+  fill: currentColor !important;
+}
+
+
+/* ====== Separators & footer ====== */
+hr.soft{
+  border:none; height:1px;
+  background:linear-gradient(90deg, transparent, #dbe2f1, transparent);
+  margin:14px 0;
+}
+.footer-note{ color:#64748b; font-size:.78rem; text-align:center; margin-top:10px; }
+
+/* ====== Empty state ====== */
+.empty-state{
+  background: rgba(255,255,255,0.55);
+  border:1px dashed #cbd5e1;
+  border-radius:16px; padding:16px; color:#475569;
+}
+.empty-state h4{ margin:0 0 6px 0; font-size:1rem; color:#0f172a; }
