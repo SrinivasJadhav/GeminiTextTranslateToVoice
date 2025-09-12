@@ -1,5 +1,6 @@
 python --version
 python -m venv .venv
+
 .venv\Scripts\activate
     if permission error
     Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
