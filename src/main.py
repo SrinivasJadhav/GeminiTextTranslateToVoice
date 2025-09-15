@@ -616,7 +616,7 @@ def run_app() -> None:
         # Footer
         st.markdown(
             "<div class='footer-note'>Made with ❤️  •  "
-            f"{datetime.now().strftime('%b %d, %Y')}  •  Translate = text + audio</div>",
+            f"{datetime.now().strftime('%b %d, %Y')}  •  Translate = text + audio. Created by Srinivas Jadhav</div>",
             unsafe_allow_html=True,
         )
 
