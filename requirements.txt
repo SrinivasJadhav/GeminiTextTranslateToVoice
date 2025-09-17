@@ -6,3 +6,4 @@ pypdf2
 gtts
 pandas
 pytesseract
+openpyxl

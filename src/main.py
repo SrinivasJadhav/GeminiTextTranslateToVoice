@@ -141,6 +141,30 @@ def read_image_text(uploaded_file) -> str:
         return f"Error extracting text from image: {e}"
 
 
+def read_excel_safe(uploaded_file) -> str:
+    """
+    Read .xlsx even if 'openpyxl' isn't installed.
+    Tries engine='calamine' (python-calamine) first, then 'openpyxl'.
+    If neither is available, shows a friendly error instead of crashing.
+    """
+    # Make sure we read from the beginning each attempt
+    def _read_with_engine(engine_name: str):
+        uploaded_file.seek(0)
+        return pd.read_excel(uploaded_file, engine=engine_name)
+
+    try:
+        df = _read_with_engine("openpyxl")
+        return df.to_string(index=False)
+    except Exception:
+        pass
+
+    st.error(
+        "Excel support is not installed. Please run "
+        "`pip install openpyxl` (recommended) or `pip install python-calamine`."
+    )
+    return ""
+
+
 def extract_text_from_file(uploaded_file) -> str:
     """
     Extract text from a file-like object by inspecting its filename extension.
@@ -156,7 +180,7 @@ def extract_text_from_file(uploaded_file) -> str:
         if name.endswith(".csv"):
             return pd.read_csv(uploaded_file).to_string(index=False)
         if name.endswith(".xlsx"):
-            return pd.read_excel(uploaded_file).to_string(index=False)
+            return read_excel_safe(uploaded_file)
         if name.endswith((".jpeg", ".jpg", ".png")):
             return read_image_text(uploaded_file)
         return ""
