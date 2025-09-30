@@ -16,5 +16,6 @@ Create .env file for storing all the environment variables
 Created test project
 pytest -q
 
+Run:
 streamlit run c:\Edureka\Capstone-GenAIML\src\main.py
 
